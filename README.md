@@ -32,6 +32,9 @@ This does not simulate any of the functionality of an LLRAM port and so will not
 
 ## Changelog
 
+### Version 0.2
+Fix out-by-one issue when checking bounds of a write
+
 ### Version 0.1
 Initial release
 

@@ -123,9 +123,16 @@ ssize_t llram_write(struct file *f, const char *buf, size_t len, loff_t *offset)
   printk(KERN_DEBUG "[llram] Requested write of %ld byte(s)", len);
 
   // If out of range, fault as cannot write
-  if (!llram_addr_in_range(*offset) || !llram_addr_in_range(*offset+len)) {
-    printk(KERN_WARNING "[llram] Address 0x%07llx -> 0x%07llx out of range", *offset, *offset+len);
-    return -EFAULT;
+  if (len) {
+    if (!llram_addr_in_range(*offset) || !llram_addr_in_range(*offset+len-1)) {
+      printk(KERN_WARNING "[llram] Address 0x%07llx -> 0x%07llx out of range", *offset, *offset+len);
+      return -EFAULT;
+    }
+  } else {
+    if (!llram_addr_in_range(*offset)) {
+      printk(KERN_WARNING "[llram] Address 0x%07llx out of range", *offset);
+      return -EFAULT;
+    }
   }
 
   if (copy_from_user(llram_pointer+*offset, buf, len)) {
