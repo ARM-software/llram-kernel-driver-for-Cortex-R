@@ -32,7 +32,7 @@
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Arm Ltd");
 MODULE_DESCRIPTION("Example driver for the LLRAM port");
-MODULE_VERSION("0.1");
+MODULE_VERSION("0.2");
 
 // Module config
 static bool enable_llram = 0;
