@@ -32,7 +32,7 @@
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Arm Ltd");
 MODULE_DESCRIPTION("Example driver for the LLRAM port");
-MODULE_VERSION("0.2");
+MODULE_VERSION("0.3");
 
 // Module config
 static bool enable_llram = 0;
@@ -46,6 +46,8 @@ MODULE_PARM_DESC(allow_simulated,
 
 // LLRAM is 256MB
 #define LLRAM_SIZE (256*1024*1024)
+// The ID mask does not compare Variant and Revision, as all revisions that can
+// run Linux are supported.
 #define ID_MASK  0xff0fffe0
 #define ID_VALUE 0x410fd140
 #define LLRAM_IMPL_MASK 0x80

@@ -1,6 +1,6 @@
 # llram-kernel-driver-for-Cortex-R
 
-This repository contains an example Linux kernel driver for the _Low-latency RAM_ (LLRAM) port that is present on Arm:registered: Cortex:registered:-based processors that implement the 64-bit R-profile architecture. The LLRAM port is optimized to give a more deterministic and lower-latency access to memory for real-time applications. In order for software to access the memory connected to the LLRAM port from Linux a driver is required and this repository contains an example that can be adapted for the required application. This is required because it is not possible to place pagetables in memory conncted to the LLRAM port, and so the LLRAM cannot be used as general purpose memory by Linux. By using a driver it is still possible for user space applications to communicate with real-time software via the LLRAM port.
+This repository contains an example Linux kernel driver for the _Low-latency RAM_ (LLRAM) port that is present on Arm :registered: Cortex :registered:-based processors that implement the 64-bit R-profile architecture. The LLRAM port is optimized to give a more deterministic and lower-latency access to memory for real-time applications. In order for software to access the memory connected to the LLRAM port from Linux a driver is required and this repository contains an example that can be adapted for the required application. This is required because it is not possible to place pagetables in memory conncted to the LLRAM port, and so the LLRAM cannot be used as general purpose memory by Linux. By using a driver it is still possible for user space applications to communicate with real-time software via the LLRAM port.
 
 ## Usage
 
@@ -11,7 +11,15 @@ The driver should be built along with the kernel for the target device. The driv
 
 ## Supported Processors
 
-This driver supports the Arm:registered: Cortex:registered:-R82 processor. Revisions r1p0 and r1p1 are supported.
+This driver supports the Arm :registered: Cortex :registered:-R82 processor and the Arm :registered: Cortex :registered:-R82AE processor.
+
+For Cortex :registered:-R82 the following revisions are supported:
+
+- All revisions from r1p0 onwards (r0p0, r0p1 and r0p2 do not support VMSA)
+
+For Cortex :registered:-R82AE the following revisions are supported:
+
+- All revisions
 
 ## Limitations
 
@@ -31,6 +39,9 @@ For development of applications that need to interact with this driver, when dev
 This does not simulate any of the functionality of an LLRAM port and so will not provide any determinism or latency guarantees but is just intended to provide a memory that uses the same API for application development.
 
 ## Changelog
+
+### Version 0.3
+Updating supported revisions
 
 ### Version 0.2
 Fix out-by-one issue when checking bounds of a write
